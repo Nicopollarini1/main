@@ -833,11 +833,14 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             document.querySelector('.loading').style.display = 'none'; // Oculta el mensaje de carga
+
             if (data.ok) {
                 document.querySelector('.sent-message').style.display = 'block'; // Muestra el mensaje de éxito
                 form.reset(); // Opcional: Limpia el formulario
+
+                // Redirige a la página de agradecimiento después de 2 segundos
                 setTimeout(() => {
-                    window.location.href = data.next; // Redirige a la página de agradecimiento
+                    window.location.href = `https://formspree.io${data.next}`;
                 }, 2000); // Espera 2 segundos antes de redirigir
             } else {
                 document.querySelector('.error-message').textContent = 'Ocurrió un error al enviar el formulario.';
